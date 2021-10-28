@@ -1,16 +1,15 @@
 # Site settings
-title: Mauricio Urraco
-description: Jekyll Theme Minimal Resume
-# baseurl: "" # the subpath of your site, e.g. /blog
-# url: "localhost:3000" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+title: Craig Lawrence Derington
+description: Senior Full Stack Engineer
+url: "localhost:3000, craigderington.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
 
 # User settings
-username: Mauricio Urraco
-user_description: I'm a Software Engineer from Argentina, always searching for the next challenge; no task is too scary nor too difficult. Lately I have been immersed in world of Giving Circles working with Grapevine, a California based startup trying to improve the world through collaborative giving. I'm the first engineer they hired to work on the platform.
-user_title: Software Engineer
-email: mauriurraco@gmail.com
-# twitter_username: lorem_ipsum
-# github_username:  lorem_ipsum
+username: Craig Derington
+user_description: U.S. Army Armorer & Veteran, Python Developer, Crypto & Self-Sovereign Advocate.  Vires in Numeris.
+user_title: Senior Full Stack Engineer
+email: craigderington@protonmail.com
+twitter_username: JamesCraigLND
+github_username:  craigderington
 # gplus_username:  lorem_ipsum
 
 exclude: ['package.json', 'src' , 'node_modules']
