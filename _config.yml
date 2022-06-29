@@ -5,11 +5,9 @@ url: "localhost:3000, craigderington.github.io" # the base hostname & protocol f
 
 # User settings
 username: Craig Derington
-user_description: U.S. Army Armorer & Veteran, Python Developer, Crypto & Self-Sovereign Advocate.  Vires in Numeris.
+user_description: Automating the World with Python, Celery and Docker
 user_title: Senior Full Stack Engineer
-email: craigderington@protonmail.com
-twitter_username: JamesCraigLND
+email: craigderington@pm.me
 github_username:  craigderington
-# gplus_username:  lorem_ipsum
 
 exclude: ['package.json', 'src' , 'node_modules']
