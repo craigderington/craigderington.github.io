@@ -1,12 +1,12 @@
 # Site settings
 title: Craig Lawrence Derington
-description: Senior Full Stack Engineer
-url: "localhost:3000, craigderington.github.io" # the base hostname & protocol for your site e.g. http://willianjusten.com.br
+description: Question Everything
+url: "localhost:3000, craigderington.github.io" # the base hostname
 
 # User settings
 username: Craig Derington
-user_description: Veteran Web Developer Automating the World with Docker, Python, Celery and MQtt.
-user_title: Senior Full Stack Engineer
+user_description: Veteran. Nerd. Nomad. Everything is a conspiracy.
+user_title: Question Everything
 email: craigderington@pm.me
 github_username:  craigderington
 
