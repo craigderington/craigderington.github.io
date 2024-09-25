@@ -1,13 +1,13 @@
 # Site settings
 title: Craig Lawrence Derington
-description: Disorder from Chaos
+description: "Ephesians 6:13"
 url: "localhost:3000, craigderington.github.io" # the base hostname
 
 # User settings
 username: Craig Derington
-user_description: Veteran. Nerd. Nihilist. Nomad. 
+user_description: Christian. Veteran. Developer. Foodie.
 user_title: Question Everything
-email: craigderington@pm.me
+email: craigderington17@gmail.com
 github_username:  craigderington
 
 exclude: ['package.json', 'src' , 'node_modules']
