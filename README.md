@@ -40,7 +40,7 @@ url: "http://localhost:3000" # the base hostname & protocol for your site
 ```yml
 username: Lorem Ipsum
 user_description: Software Engineer
-user_title: Crig Derington
+user_title: Craig Derington
 email: craigderington@protonmail.com
 ```
 
