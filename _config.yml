@@ -7,7 +7,7 @@ url: "localhost:3000, craigderington.github.io" # the base hostname
 username: Craig Derington
 user_description: Disabled Veteran. Java &amp; Python Developer, Automation Expert
 user_title: "Veteran Web Developer"
-email: craigderington17@gmail.com
+email: craig@craigderington.dev
 github_username:  craigderington
 
 exclude: ['package.json', 'src' , 'node_modules']
