@@ -1,12 +1,12 @@
 # Site settings
 title: Craig Lawrence Derington
-description: "Veteran Web Developer & Database Engineer"
+description: "Veteran web developer automating the world with Docker, Python & Celery."
 url: "localhost:3000, craigderington.github.io" # the base hostname
 
 # User settings
 username: Craig Derington
-user_description: Disabled Veteran. Java &amp; Python Developer, Automation Expert
-user_title: "Veteran Web Developer"
+user_description: "Veteran web developer automating the world with Docker, Python & Celery."
+user_title: "There is no spoon..."
 email: craig@craigderington.dev
 github_username:  craigderington
 
