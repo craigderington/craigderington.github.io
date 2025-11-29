@@ -4,7 +4,7 @@
 </p>
 
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=2000&color=00ADEF&center=true&vCenter=true&width=600&lines=Full++Stack+Developer+%7C+DevOps+Engineer+%7C+Cloud+Builder+%7C+Linux+First;Automate+Everything;Microservices+26+Kubernetes+On+the+Daily;Espresso+Powered+Productivity"/>
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=2000&color=00ADEF&center=true&vCenter=true&width=600&lines=Full++Stack+Developer;DevOps+Engineer;Cloud+Builder+%7C+Linux+First;Automate+Everything;Microservices;Kubernetes+On+the+Daily;Espresso+Powered+Productivity"/>
 </h1>
 
 <p align="center">
