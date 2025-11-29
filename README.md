@@ -1,21 +1,17 @@
 <!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
-  <img src="https://via.placeholder.com/1000x250.png?text=Craig+Derington+|+DevOps+Engineer" alt="Banner"/>
+ <blockquote class="imgur-embed-pub" lang="en" data-id="a/l8SufVN" data-context="false" ><a href="//imgur.com/a/l8SufVN"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 </p>
 
-<h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=2000&color=00ADEF&center=true&vCenter=true&width=600&lines=Full++Stack+Developer;DevOps+Engineer;Cloud+Builder+%7C+Linux+First;Automate+Everything;Microservices;Kubernetes+On+the+Daily;Espresso+Powered+Productivity"/>
-</h1>
-
 <p align="center">
-A professional Full Stack Developer and DevOps engineer crafting resilient, high-availability systems — both on-prem and in the cloud.  
+DevOps Engineer and Full-Stack Developer focused on delivering resilient, fault-tolerant, high-availability platforms through automation and cloud-native design.  
 </p>
 
 ---
 
 ### 🧩 Current Focus
 - Architecting event-driven microservices using **Java Spring Boot**
-- Deploying and managing **K3s Kubernetes clusters** across multiple nodes
+- Deploying and managing **k3s and microk8s clusters** across multiple nodes
 - **GitHub Actions CI/CD** + secure container delivery pipelines
 - **Network+ & Security+** career certification path
 
@@ -50,25 +46,25 @@ A professional Full Stack Developer and DevOps engineer crafting resilient, high
 
 #### 🚚 FleetWave — Microservice Fleet Management  
 🔹 Spring Boot • PostgreSQL • Docker • Cloud-ready  
-🔸 Full rewrite from legacy into distributed services  
-<p align="left">
-<a href="https://github.com/craigderington/fleetwave">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=craigderington&repo=fleetwave&theme=tokyonight" />
-</a>
-</p>
+🔹 Full rewrite from legacy into distributed services  
 
-#### 🔁 Counters Demo on K3s  
-🔹 Python + Redis autoscaling demo on Kubernetes  
-<p align="left">
-<a href="https://github.com/craigderington/k3s-counters">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=craigderington&repo=k3s-counters&theme=tokyonight" />
-</a>
-</p>
+#### Menu Pilot: Club Menu Order Management
+🔹 Spring Boot • Postgres • Stripe integration
+🔹 Food Service Point of Sale
+🔹 Product Inventory Tracking
+🔹 Bar Management
+🔹 Menu Creation
+
+#### 🔁 Counters Demo on k3s  
+🔹 Python + Redis autoscaling demo on k3s or microk8s
+🔹 Multi-Node cluster in High Availabity mode
+🔹 Deployment YAML
+
 
 ### 📫 Connect With Me
 
 📧 craig@craigderington.dev  
-🌐 craigderington.github.io
+🌐 [craigderington.github.io](https://craigderington.github.io)
 
 
 
