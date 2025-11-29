@@ -43,20 +43,29 @@ Full-Stack Developer delivering resilient, fault-tolerant, high-availability pla
 
 ### 📌 Featured Projects
 
-#### 🚚 FleetWave — Microservice Fleet Management  
-🔹 Spring Boot • PostgreSQL • Docker • Cloud-ready  
+#### 🚚 FleetWave — Microservice Radio Fleet Management  
+🔹 Spring Boot • PostgreSQL • Docker • Cloud-ready
+
+🔹 100% API end-point coverage
+
 🔹 Full rewrite from legacy into distributed services  
 
-#### Menu Pilot: Club Menu Order Management
+#### 🧑‍🍳 Menu Pilot: Club Menu Order Management
 🔹 Spring Boot • Postgres • Stripe integration
+
 🔹 Food Service Point of Sale
+
 🔹 Product Inventory Tracking
-🔹 Bar Management
-🔹 Menu Creation
+
+🔹 Bar Inventory Management
+
+🔹 Menu Suggestion and Creation
 
 #### 🔁 Counters Demo on k3s  
 🔹 Python + Redis autoscaling demo on k3s or microk8s
+
 🔹 Multi-Node cluster in High Availabity mode
+
 🔹 Deployment YAML
 
 
