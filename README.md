@@ -4,7 +4,7 @@
 </p>
 </p>
 <p align="left">
-👋 Hi, I'm Craig.  [![Github](https://img.shields.io/github/followers/craigderington?label=Follow&style=social)](https://github.com/craigderington)<br/>
+👋 Hi, I'm Craig.  <a href="https://github.com/craigderington" class="float-right"><img src="https://img.shields.io/github/followers/craigderington?label=Follow&style=social" alt="Follow Me on GitHub"></a><br/>
 I ❤️ Open Source, Linux, Docker and Automation.  
 </p>
 
