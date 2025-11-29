@@ -1,6 +1,6 @@
 <!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
- <blockquote class="imgur-embed-pub" lang="en" data-id="a/l8SufVN" data-context="false" ><a href="//imgur.com/a/l8SufVN"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+ <img src="https://imgur.com/a/l8SufVN"></img>
 </p>
 
 <p align="center">
