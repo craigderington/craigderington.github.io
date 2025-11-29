@@ -1,6 +1,9 @@
 <!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
-DevOps Engineer and Full-Stack Developer focused on delivering resilient, fault-tolerant, high-availability platforms through automation and cloud-native design.  
+  <img src="//raw.githubusercontent.com/craigderington/craigderington.github.io/refs/heads/master/assets/MicrosoftServer2016-Security.jpg" alt="security banner"></p>
+</p>
+<p align="center">
+Full-Stack Developer delivering resilient, fault-tolerant, high-availability platforms through automation and cloud-first design.  
 </p>
 
 ---
