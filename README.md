@@ -4,11 +4,11 @@
 </p>
 
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=1000&color=00ADEF&center=true&vCenter=true&width=700&lines=DevOps+Engineer+%7C+Cloud+Builder+%7C+Linux+First;Automating+Everything;Microservices+%26+Kubernetes+On+the+Daily;Coffee+and+Bourbon+Powered+Productivity"/>
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=1000&color=00ADEF&center=true&vCenter=true&width=600&lines=Full Stack Developer+%7C+DevOps+Engineer+%7C+Cloud+Builder+%7C+Linux+First;Automate+Everything;Microservices+%26+Kubernetes+On+the+Daily;Espresso+Powered+Productivity"/>
 </h1>
 
 <p align="center">
-A professional DevOps and infrastructure engineer crafting resilient systems — both on-prem and in the cloud.  
+A professional Full Stack Developer and DevOps engineer crafting resilient, high-availability systems — both on-prem and in the cloud.  
 </p>
 
 ---
@@ -65,29 +65,14 @@ A professional DevOps and infrastructure engineer crafting resilient systems —
 </a>
 </p>
 
----
-
-### 📊 GitHub Analytics
-
-<p align="center">
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=craigderington&show_icons=true&theme=tokyonight&hide_title=true&rank_icon=github">
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=craigderington&layout=compact&theme=tokyonight">
-</p>
-
----
-
 ### 📫 Connect With Me
 
 📧 craig@craigderington.dev  
 🌐 craigderington.github.io
 
----
 
-### ⚡ Fun Facts
-- Bourbon neat. Coffee black. Systems streamlined.
-- Self-hosted everything — including Kubernetes.  
 
----
 
-<p align="center"><b>Thank you for stopping by — always building, always learning 🚀</b></p>
+
+
 
