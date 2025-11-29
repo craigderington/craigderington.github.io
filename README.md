@@ -1,9 +1,11 @@
 <!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/craigderington/craigderington.github.io/refs/heads/master/assets/MicrosoftServer2016-Security.jpg" alt="security banner"></p>
+  <img src="https://raw.githubusercontent.com/craigderington/craigderington.github.io/refs/heads/master/assets/MicrosoftServer2016-Security.jpg" alt="security banner">
 </p>
-<p align="center">
-Full-Stack Developer delivering resilient, fault-tolerant, high-availability platforms through automation and cloud-first design.  
+</p>
+<p align="left">
+👋 Hi, I'm Craig.  [![Github](https://img.shields.io/github/followers/craigderington?label=Follow&style=social)](https://github.com/craigderington)<br/>
+I ❤️ Open Source, Linux, Docker and Automation.  
 </p>
 
 ---
