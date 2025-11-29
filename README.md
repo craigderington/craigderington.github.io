@@ -1,9 +1,5 @@
 <!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
- <img src="https://imgur.com/a/l8SufVN"></img>
-</p>
-
-<p align="center">
 DevOps Engineer and Full-Stack Developer focused on delivering resilient, fault-tolerant, high-availability platforms through automation and cloud-native design.  
 </p>
 
