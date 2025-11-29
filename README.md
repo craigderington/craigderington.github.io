@@ -1,85 +1,93 @@
-# Jekyll Resume Theme
-
-# Stack
-
-![](https://img.shields.io/badge/jekyll-✓-blue.svg)
-![](https://img.shields.io/badge/html5-✓-blue.svg)
-![](https://img.shields.io/badge/sass-✓-blue.svg)
-![](https://img.shields.io/badge/sweet--scroll-✓-blue.svg)
-![](https://img.shields.io/badge/particle--js-✓-blue.svg)
-![](https://img.shields.io/badge/font--awesome-✓-blue.svg)
-![](https://img.shields.io/badge/devicon-✓-blue.svg)
-![](https://img.shields.io/badge/gulp-✓-blue.svg)
-
-***
-
-# Screenshot
-
+<!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
-  <img src="https://github.com/craigderington/craigderington.github.io/blob/master/screenshot.png" width="70%" />
+  <img src="https://via.placeholder.com/1000x250.png?text=Craig+Derington+|+DevOps+Engineer" alt="Banner"/>
 </p>
 
-# Quick Setup
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=600&size=28&pause=1000&color=00ADEF&center=true&vCenter=true&width=700&lines=DevOps+Engineer+%7C+Cloud+Builder+%7C+Linux+First;Automating+Everything;Microservices+%26+Kubernetes+On+the+Daily;Coffee+and+Bourbon+Powered+Productivity"/>
+</h1>
 
-1. Install Jekyll: `gem install jekyll bundler`
-2. Fork this repository and clone your fork
-3. Edit `_config.yml` to personalize your site
+<p align="center">
+A professional DevOps and infrastructure engineer crafting resilient systems — both on-prem and in the cloud.  
+</p>
 
-# Settings
+---
 
-You have to fill some informations on `_config.yml` to customize your site:
+### 🧩 Current Focus
+- Architecting event-driven microservices using **Java Spring Boot**
+- Deploying and managing **K3s Kubernetes clusters** across multiple nodes
+- **GitHub Actions CI/CD** + secure container delivery pipelines
+- **Network+ & Security+** career certification path
 
-## Site settings
-```yml
-description: A blog about lorem ipsum dolor sit amet
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://localhost:3000" # the base hostname & protocol for your site
-```
+---
 
-## User settings
-```yml
-username: Lorem Ipsum
-user_description: Software Engineer
-user_title: Craig Derington
-email: craigderington@protonmail.com
-```
+### 🛠 Skills & Expertise
 
-> Don't forget to change your URL before you deploy your site!
+#### 💻 Core Languages
+![Java](https://img.shields.io/badge/Java-007396?logo=openjdk&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-316192?logo=postgresql&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-121011?logo=gnu-bash&logoColor=white)
 
-# Color and Particle Customization
+#### 🧱 DevOps & Cloud Infra
+![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white)
+![Traefik](https://img.shields.io/badge/Traefik-24A7DF?logo=traefikproxy&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+![Azure AD](https://img.shields.io/badge/Azure_AD-0078D4?logo=microsoft-azure&logoColor=white)
+![Intune](https://img.shields.io/badge/Intune-0078D4?logo=microsoft-intune&logoColor=white)
 
-- Color Customization
-  - Edit the `.sass` variables
-- Particle Customization
-  - Edit the json data in particle function in `app.js`
-  - Refer to `Particle.js` for help
+#### 🧰 Developer Workstation
+![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=white)
+![Fedora](https://img.shields.io/badge/Fedora-294172?logo=fedora&logoColor=white)
+![Hyprland](https://img.shields.io/badge/Hyprland-00AAFF?logo=linux&logoColor=white)
+![i3wm](https://img.shields.io/badge/i3wm-4758B7?logo=i3&logoColor=white)
 
-# Content
+---
 
-You can (and should) edit the `.html` files for adding your own information, icons, working experience, social links or whatever you want to add. I.e.:
+### 📌 Featured Projects
 
-```html
-<a aria-label="My Github" target="_blank" href="https://github.com/craigderington">
-  <i class="icon fa fa-github-alt" aria-hidden="true"></i>
+#### 🚚 FleetWave — Microservice Fleet Management  
+🔹 Spring Boot • PostgreSQL • Docker • Cloud-ready  
+🔸 Full rewrite from legacy into distributed services  
+<p align="left">
+<a href="https://github.com/craigderington/fleetwave">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=craigderington&repo=fleetwave&theme=tokyonight" />
 </a>
-```
+</p>
 
-# Running locally
+#### 🔁 Counters Demo on K3s  
+🔹 Python + Redis autoscaling demo on Kubernetes  
+<p align="left">
+<a href="https://github.com/craigderington/k3s-counters">
+<img src="https://github-readme-stats.vercel.app/api/pin/?username=craigderington&repo=k3s-counters&theme=tokyonight" />
+</a>
+</p>
 
-In order to compile the assets and run `Jekyll` locally you need to follow those steps:
+---
 
-1. Install Jekyll
-2. Run `bundle install`
-3. Run `bundle exec jekyll build`
-4. Start and http-server in the folder `_site`
+### 📊 GitHub Analytics
 
-# Contribution
+<p align="center">
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=craigderington&show_icons=true&theme=tokyonight&hide_title=true&rank_icon=github">
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=craigderington&layout=compact&theme=tokyonight">
+</p>
 
-- Report issues
-- Open pull request with improvements
-- Spread the word
+---
 
-# Credits
+### 📫 Connect With Me
 
-- [Nathan Randecker](https://github.com/nrandecker)
-- [Mauricio Urraco](https://github.com/murraco)
+📧 craig@craigderington.dev  
+🌐 craigderington.github.io
+
+---
+
+### ⚡ Fun Facts
+- Bourbon neat. Coffee black. Systems streamlined.
+- Self-hosted everything — including Kubernetes.  
+
+---
+
+<p align="center"><b>Thank you for stopping by — always building, always learning 🚀</b></p>
+
