@@ -400,8 +400,10 @@ This interactive CV is open source! Check out the repository:
         return `<span class="highlight">Certifications & Learning Path</span>
 
 <span class="success">🎯 CURRENT FOCUS (2025):</span>
+  ☐ Associate of Science (specialization in Cybersecurity)
+    from Seminole State College - completion Spring 2026
   ☐ CompTIA Network+ (In Progress)
-  ☐ CompTIA Security+ (Planned)
+  ☐ CompTIA Security+ (In Progress)
 
 <span class="info">📚 CONTINUOUS LEARNING:</span>
   ✓ Kubernetes Administration
@@ -410,10 +412,10 @@ This interactive CV is open source! Check out the repository:
   ✓ DevOps & CI/CD Pipelines
   ✓ Container Orchestration
 
-<span class="warning">🛠 PRACTICAL CERTIFICATIONS:</span>
-  ✓ AWS Solutions Architect (Associate Level Knowledge)
-  ✓ Azure Fundamentals (Practical Experience)
-  ✓ Docker & Kubernetes (Production Deployments)
+<span class="warning">🛠 PRACTICAL EXPERIENCE:</span>
+  ✓ AWS Cloud Architecture (Hands-on Production Experience)
+  ✓ Azure Cloud Services (Active Development & Deployment)
+  ✓ Docker & Kubernetes (Multi-node Production Clusters)
 
 <span class="cyan">💡 TIP:</span> I believe in practical experience over paper certifications,
 but I'm actively pursuing industry-recognized credentials to
