@@ -1,0 +1,322 @@
+/* Tokyo Night Color Palette */
+:root {
+    --bg-dark: #1a1b26;
+    --bg-highlight: #24283b;
+    --bg-visual: #283457;
+    --fg: #c0caf5;
+    --fg-dark: #a9b1d6;
+    --fg-gutter: #3b4261;
+    --comment: #565f89;
+    --cyan: #7dcfff;
+    --blue: #7aa2f7;
+    --purple: #bb9af7;
+    --green: #9ece6a;
+    --yellow: #e0af68;
+    --orange: #ff9e64;
+    --red: #f7768e;
+    --magenta: #bb9af7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+    background: linear-gradient(135deg, #0f0f14 0%, #1a1b26 50%, #1f2335 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--fg);
+}
+
+.terminal-container {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--bg-dark);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(122, 162, 247, 0.1);
+    overflow: hidden;
+    border: 1px solid var(--fg-gutter);
+}
+
+.terminal-header {
+    background: var(--bg-highlight);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--fg-gutter);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-close {
+    background: var(--red);
+}
+
+.btn-minimize {
+    background: var(--yellow);
+}
+
+.btn-maximize {
+    background: var(--green);
+}
+
+.terminal-title {
+    color: var(--fg-dark);
+    font-size: 13px;
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+}
+
+.terminal-body {
+    padding: 20px;
+    min-height: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: var(--bg-dark);
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: var(--bg-highlight);
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: var(--fg-gutter);
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--comment);
+}
+
+.terminal-output {
+    margin-bottom: 10px;
+}
+
+.output-line {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.command {
+    color: var(--fg);
+    margin-bottom: 4px;
+}
+
+.prompt-text {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.command-text {
+    color: var(--fg);
+    margin-left: 8px;
+}
+
+.result {
+    color: var(--fg-dark);
+    padding-left: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.error {
+    color: var(--red);
+}
+
+.success {
+    color: var(--green);
+}
+
+.info {
+    color: var(--cyan);
+}
+
+.warning {
+    color: var(--yellow);
+}
+
+.highlight {
+    color: var(--purple);
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prompt {
+    color: var(--green);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 14px;
+    caret-color: var(--cyan);
+}
+
+#input::selection {
+    background: var(--bg-visual);
+}
+
+/* Link styling */
+a {
+    color: var(--blue);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--cyan);
+    text-decoration: underline;
+}
+
+/* ASCII Art */
+.ascii-art {
+    color: var(--purple);
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+/* Skill badges */
+.skill-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 2px 4px 2px 0;
+    background: var(--bg-highlight);
+    border: 1px solid var(--fg-gutter);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--cyan);
+}
+
+/* Project card in terminal */
+.project-item {
+    margin: 12px 0;
+    padding: 12px;
+    background: var(--bg-highlight);
+    border-left: 3px solid var(--blue);
+    border-radius: 4px;
+}
+
+.project-title {
+    color: var(--yellow);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.project-desc {
+    color: var(--fg-dark);
+    margin-bottom: 6px;
+}
+
+.project-tech {
+    color: var(--purple);
+    font-size: 12px;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+td {
+    padding: 4px 16px 4px 0;
+}
+
+.key {
+    color: var(--cyan);
+}
+
+.value {
+    color: var(--fg-dark);
+}
+
+/* Animation for typing effect */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--cyan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .terminal-container {
+        border-radius: 8px;
+    }
+
+    .terminal-body {
+        padding: 15px;
+        font-size: 13px;
+        min-height: 400px;
+    }
+
+    .terminal-title {
+        font-size: 11px;
+    }
+}
+
+/* Welcome banner */
+.welcome-banner {
+    margin: 20px 0;
+    padding: 16px;
+    background: var(--bg-highlight);
+    border: 1px solid var(--blue);
+    border-radius: 6px;
+}
+
+.banner-title {
+    color: var(--cyan);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.banner-text {
+    color: var(--fg-dark);
+    line-height: 1.6;
+}

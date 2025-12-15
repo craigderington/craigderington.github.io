@@ -1,3 +1,29 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>craig@terminal:~$ whoami</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="btn btn-close"></span>
+                <span class="btn btn-minimize"></span>
+                <span class="btn btn-maximize"></span>
+            </div>
+            <div class="terminal-title">craig@orlando:~</div>
+        </div>
+        <div class="terminal-body" id="terminal">
+            <div class="terminal-output" id="output"></div>
+            <div class="input-line">
+                <span class="prompt" id="prompt">guest@craig:~$</span>
+                <input type="text" id="input" autocomplete="off" autofocus spellcheck="false">
+            </div>
+        </div>
+    </div>
+    <script src="terminal.js"></script>
+</body>
+</html>
