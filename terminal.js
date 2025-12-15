@@ -270,12 +270,13 @@ spans both on-premises infrastructure and cloud environments.
 <span class="success">## Quick Start</span>
 Try these commands to explore my professional profile:
 
-  <span class="cyan">cat about.txt</span>       - Learn about me
-  <span class="cyan">cat skills.json</span>     - View my technical skills
-  <span class="cyan">cat experience.md</span>   - See my work history
-  <span class="cyan">cd projects</span>         - Browse my projects
-  <span class="cyan">neofetch</span>            - System information
-  <span class="cyan">curl contact</span>        - Get contact information
+  <span class="cyan">cat about.txt</span>            - Learn about me
+  <span class="cyan">cat skills.json</span>          - View my technical skills
+  <span class="cyan">cat experience.md</span>        - See my work history
+  <span class="cyan">cat certifications.txt</span>   - View certifications & learning path
+  <span class="cyan">cd projects</span>              - Browse my projects
+  <span class="cyan">nerdfetch</span>                - System information
+  <span class="cyan">curl contact</span>             - Get contact information
 
 <span class="success">## Navigation</span>
 This terminal supports standard Unix commands like cd, ls, pwd,
