@@ -416,6 +416,8 @@ This interactive CV is open source! Check out the repository:
   ✓ AWS Cloud Architecture (Hands-on Production Experience)
   ✓ Azure Cloud Services (Active Development & Deployment)
   ✓ Docker & Kubernetes (Multi-node Production Clusters)
+  ✓ Django & Flask (Cloud-Native Production Web Applications)
+  ✓ Celery Task Queue (Distributed Asynchronous Processing Architecture)
 
 <span class="cyan">💡 TIP:</span> I believe in practical experience over paper certifications,
 but I'm actively pursuing industry-recognized credentials to
