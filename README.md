@@ -45,30 +45,42 @@ I ❤️ Open Source, Linux, Docker and Automation.
 
 ### 📌 Featured Projects
 
-#### 🚚 FleetWave — Microservice Radio Fleet Management  
-🔹 Spring Boot • PostgreSQL • Docker • Cloud-ready
+Platforms built at [Pathfinder Networks](https://pathfinder-networks.org).
 
-🔹 100% API end-point coverage
+#### ⚡ [GB10 Studio](https://gb10.studio) — GB10 Compute Marketplace
+🔹 NVIDIA Grace Blackwell • OpenAI-compatible API • Stripe
 
-🔹 Full rewrite from legacy into distributed services  
+🔹 On-demand private LLM inference on reserved hardware slots
 
-#### 🧑‍🍳 Menu Pilot: Club Menu Order Management
-🔹 Spring Boot • Postgres • Stripe integration
+🔹 Two-sided marketplace with provider onboarding and payouts
 
-🔹 Food Service Point of Sale
+#### 🙌 [GraceSquad](https://gracesquad.org) — Volunteer Scheduling for Churches & Nonprofits
+🔹 Auto-fill scheduling engine with 7-rule conflict detection
 
-🔹 Product Inventory Tracking
+🔹 Volunteer/member CRM with skill and certification tracking
 
-🔹 Bar Inventory Management
+🔹 Child-safety module with QR check-in and two-adult rule enforcement
 
-🔹 Menu Suggestion and Creation
+#### 🔧 [TradeFix](https://tradefix.org) — Field Service Platform
+🔹 iOS • Android • Stripe • QuickBooks Online • Google Maps
 
-#### 🔁 Counters Demo on k3s  
-🔹 Python + Redis autoscaling demo on k3s or microk8s
+🔹 GPS dispatch, estimates with e-signature, membership automation
 
-🔹 Multi-Node cluster in High Availabity mode
+🔹 Built for 1–25 tech trade shops
 
-🔹 Deployment YAML
+#### 🩺 [Curalis](https://curalis.care) — HIPAA Care Coordination
+🔹 Caregiver scheduling with GPS-verified clock-in/out
+
+🔹 eMAR for scheduled, PRN and witnessed doses
+
+🔹 In development — early access waitlist open
+
+#### 🏠 [Vestix](https://vestix.org) — Property Management
+🔹 Stripe Connect • e-signature • dual-payer ledger
+
+🔹 Section 8 voucher tracking and rent-to-own lease management
+
+🔹 Owner statements with P&L and NOI
 
 
 ### 📫 Connect With Me

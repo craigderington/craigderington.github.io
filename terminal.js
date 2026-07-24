@@ -10,8 +10,8 @@ class Terminal {
         this.historyIndex = -1;
         this.currentDirectory = '~';
         this.directories = {
-            '~': ['about.txt', 'skills.json', 'experience.md', 'projects/', 'contact.txt', 'certifications.txt', 'README.md'],
-            'projects': ['fleetwave/', 'menupilot/', 'k3s-observatory/', 'counters-demo/', 'tckt/']
+            '~': ['about.txt', 'skills.json', 'experience.md', 'projects/', 'contact.txt', 'company.txt', 'education.txt', 'certifications.txt', 'README.md'],
+            'projects': ['gb10-studio/', 'gracesquad/', 'tradefix/', 'curalis/', 'vestix/']
         };
 
         this.init();
@@ -222,12 +222,14 @@ class Terminal {
             'skills.json': this.skillsContent(),
             'experience.md': this.experienceContent(),
             'contact.txt': this.contactContent(),
+            'company.txt': this.companyContent(),
+            'education.txt': this.educationContent(),
             'certifications.txt': this.certificationsContent(),
-            'projects/fleetwave/info.md': this.projectFleetwave(),
-            'projects/menupilot/info.md': this.projectMenupilot(),
-            'projects/k3s-observatory/info.md': this.projectK3sObservatory(),
-            'projects/counters-demo/info.md': this.projectCounters(),
-            'projects/tckt/info.md': this.projectTckt(),
+            'projects/gb10-studio/info.md': this.projectGb10Studio(),
+            'projects/gracesquad/info.md': this.projectGraceSquad(),
+            'projects/tradefix/info.md': this.projectTradefix(),
+            'projects/curalis/info.md': this.projectCuralis(),
+            'projects/vestix/info.md': this.projectVestix(),
         };
 
         return files[filename] || files[`${this.currentDirectory}/${filename}`] || null;
@@ -273,6 +275,8 @@ Try these commands to explore my professional profile:
   <span class="cyan">cat about.txt</span>            - Learn about me
   <span class="cyan">cat skills.json</span>          - View my technical skills
   <span class="cyan">cat experience.md</span>        - See my work history
+  <span class="cyan">cat company.txt</span>          - About Pathfinder Networks
+  <span class="cyan">cat education.txt</span>        - View my education & honors
   <span class="cyan">cat certifications.txt</span>   - View certifications & learning path
   <span class="cyan">cd projects</span>              - Browse my projects
   <span class="cyan">nerdfetch</span>                - System information
@@ -397,12 +401,57 @@ This interactive CV is open source! Check out the repository:
   • Coffee and code discussions`;
     }
 
+    companyContent() {
+        return `<span class="highlight">Pathfinder Networks</span>
+<a href="https://pathfinder-networks.org" target="_blank">pathfinder-networks.org</a>
+
+<span class="success">🏢 ABOUT:</span>
+A Florida LLC building premium digital platforms for non-profit and
+faith-based organizations.
+
+<span class="info">"Technology should serve the mission, never distract from it."</span>
+
+<span class="warning">🛠 PLATFORMS:</span>
+  • <span class="cyan">GraceSquad</span>   Volunteer scheduling & member CRM    <a href="https://gracesquad.org" target="_blank">gracesquad.org</a>
+  • <span class="cyan">Curalis</span>      HIPAA care coordination             <a href="https://curalis.care" target="_blank">curalis.care</a>
+  • <span class="cyan">TradeFix</span>     Field service management            <a href="https://tradefix.org" target="_blank">tradefix.org</a>
+  • <span class="cyan">Vestix</span>       Property management                <a href="https://vestix.org" target="_blank">vestix.org</a>
+  • <span class="cyan">GB10 Studio</span>  GB10 compute marketplace            <a href="https://gb10.studio" target="_blank">gb10.studio</a>
+
+<span class="success">⚖ VALUES:</span>
+  Mission First · Built to Last · Radical Simplicity · Generous by Design
+
+<span class="info">🔗 LINKS:</span>
+  Web:     <a href="https://pathfinder-networks.org" target="_blank">pathfinder-networks.org</a>
+  GitHub:  <a href="https://github.com/Pathfinder-Networks" target="_blank">github.com/Pathfinder-Networks</a>
+
+<span class="cyan">💡 TIP:</span> Run <span class="cyan">cd projects</span> for engineering detail on each platform.`;
+    }
+
+    educationContent() {
+        return `<span class="highlight">Education</span>
+
+<span class="success">🎓 DEGREE:</span>
+  ✓ Associate of Science — Specialization in Cybersecurity
+    Seminole State College of Florida
+    Conferred August 2026
+
+<span class="warning">🏆 HONORS:</span>
+  ✓ Dean's List
+  ✓ Cumulative GPA: 3.6
+
+<span class="cyan">💡 TIP:</span> See <span class="cyan">cat certifications.txt</span> for certifications and
+continuous learning.`;
+    }
+
     certificationsContent() {
         return `<span class="highlight">Certifications & Learning Path</span>
 
+<span class="success">🎓 EDUCATION:</span>
+  ✓ A.S. Cybersecurity — Seminole State College (August 2026)
+    Dean's List · 3.6 GPA — see <span class="cyan">cat education.txt</span>
+
 <span class="success">🎯 CURRENT FOCUS (2025):</span>
-  ☐ Associate of Science (specialization in Cybersecurity)
-    from Seminole State College - completion Spring 2026
   ☐ CompTIA Network+ (In Progress)
   ☐ CompTIA Security+ (In Progress)
 
@@ -425,148 +474,155 @@ but I'm actively pursuing industry-recognized credentials to
 formalize my expertise.`;
     }
 
-    projectFleetwave() {
+    projectGb10Studio() {
         return `<div class="project-item">
-<span class="project-title">🚚 FleetWave - Radio Fleet Management System</span>
+<span class="project-title">⚡ GB10 Studio - GB10 Compute Marketplace</span>
 
 <span class="info">Description:</span>
-A comprehensive microservice-based fleet management system for radio
-communication devices. Complete rewrite from legacy monolithic
-architecture into modern distributed services.
+On-demand access to NVIDIA Grace Blackwell (GB10) hardware for private
+LLM inference. Users reserve dedicated hardware slots by the minute and
+run 70B+ parameter models through an OpenAI-compatible API, while
+hardware owners list their devices on a global marketplace.
 
 <span class="info">Tech Stack:</span>
-<span class="project-tech">Java Spring Boot • PostgreSQL • Docker • RESTful API • Microservices</span>
+<span class="project-tech">NVIDIA Grace Blackwell GB10 • NVLink-C2C • OpenAI-compatible API • Stripe • LangChain / LlamaIndex</span>
 
 <span class="info">Key Features:</span>
-• 100% API endpoint coverage with comprehensive testing
-• Event-driven architecture for real-time updates
-• Multi-tenant support with role-based access control
-• Equipment tracking and maintenance scheduling
-• Cloud-ready deployment with containerization
-• Automated CI/CD pipeline
-
-<span class="info">Highlights:</span>
-• Migrated from monolithic PHP application to microservices
-• Reduced response times by 85% through optimized architecture
-• Implemented comprehensive unit and integration tests
-• Designed for horizontal scalability
-
-<span class="success">Status:</span> Production-ready, actively maintained
-</div>`;
-    }
-
-    projectMenupilot() {
-        return `<div class="project-item">
-<span class="project-title">🧑‍🍳 Menu Pilot - Club Menu Order Management</span>
-
-<span class="info">Description:</span>
-Full-featured point-of-sale and inventory management system for
-food service operations, including menu planning and order tracking.
-
-<span class="info">Tech Stack:</span>
-<span class="project-tech">Spring Boot • PostgreSQL • Stripe API • React • Docker</span>
-
-<span class="info">Key Features:</span>
-• Complete POS system with payment processing (Stripe integration)
-• Real-time inventory tracking for food and bar items
-• Menu suggestion engine based on ingredient availability
-• Order management with kitchen queue system
-• Reporting and analytics dashboard
-• Multi-location support
-
-<span class="info">Business Impact:</span>
-• Reduced order errors by 60% with digital ordering
-• Improved inventory accuracy to 95%+
-• Streamlined kitchen operations with queue management
-• Increased revenue through data-driven menu optimization
-
-<span class="success">Status:</span> In production, serving multiple locations
-</div>`;
-    }
-
-    projectK3sObservatory() {
-        return `<div class="project-item">
-<span class="project-title">🔭 k3s Observatory - 3D Cluster Visualization</span>
-
-<span class="info">Description:</span>
-An innovative 3D visualization tool for Kubernetes (k3s) clusters,
-providing real-time monitoring and interactive cluster exploration.
-
-<span class="info">Tech Stack:</span>
-<span class="project-tech">Python • Three.js • k3s API • WebGL • Real-time Monitoring</span>
-
-<span class="info">Key Features:</span>
-• 3D interactive visualization of cluster topology
-• Real-time node and pod status updates
-• Resource utilization metrics and graphs
-• Multi-cluster support
-• Custom alerts and notifications
-• Performance metrics dashboard
-
-<span class="info">Innovation:</span>
-• Unique approach to cluster monitoring with 3D interface
-• Makes complex cluster relationships visually intuitive
-• Helps identify bottlenecks and optimization opportunities
-
-<span class="success">Status:</span> Open source project, active development
-<span class="cyan">GitHub:</span> Check my repositories for source code
-</div>`;
-    }
-
-    projectCounters() {
-        return `<div class="project-item">
-<span class="project-title">🔁 Distributed Visitors Demo - k3s Autoscaling</span>
-
-<span class="info">Description:</span>
-A demonstration project showcasing Kubernetes autoscaling capabilities
-with Python and Redis on multi-node k3s clusters.
-
-<span class="info">Tech Stack:</span>
-<span class="project-tech">Python • Redis • k3s • Kubernetes • Docker • YAML Manifests</span>
-
-<span class="info">Key Features:</span>
-• Horizontal Pod Autoscaling (HPA) demonstration
-• Multi-node cluster in High Availability mode
-• Real-time visitor counter with Redis backend
-• Load testing and performance monitoring
-• Complete deployment manifests and documentation
-
-<span class="info">Learning Resource:</span>
-• Perfect for learning Kubernetes autoscaling concepts
-• Demonstrates HA cluster configuration
-• Shows best practices for stateful applications in k8s
-• Includes step-by-step deployment guide
-
-<span class="success">Status:</span> Educational project, fully documented
-<span class="cyan">Purpose:</span> Teaching and demonstrating k8s capabilities
-</div>`;
-    }
-
-    projectTckt() {
-        return `<div class="project-item">
-<span class="project-title">🎫 Tckt - Kitchen Queue Management on Kubernetes</span>
-
-<span class="info">Description:</span>
-Cloud-native kitchen order queueing system designed to run on
-Kubernetes, optimizing food preparation workflow.
-
-<span class="info">Tech Stack:</span>
-<span class="project-tech">Python • Kubernetes • Redis • WebSockets • Docker</span>
-
-<span class="info">Key Features:</span>
-• Real-time order queue updates via WebSockets
-• Priority-based ticket routing
-• Kitchen station assignment
-• Order timing and performance analytics
-• Scalable architecture on Kubernetes
+• OpenAI-compatible API — swap base URL and key, no client rewrite
+• Dedicated slot reservation with no queueing or tenant sharing
+• Two-sided marketplace with provider onboarding and payouts
+• Encrypted slot tokens with on-demand rotation
+• Per-minute metering and billing
+• Drop-in integrations for LangChain, LlamaIndex and Cursor
 
 <span class="info">Technical Highlights:</span>
-• Demonstrates cloud-native application design
-• Implements event-driven architecture
-• Shows practical Kubernetes deployment patterns
-• Integrates with existing POS systems
+• 128 GB unified memory and 1 PFLOP FP8 addressable per slot
+• Serves 70B+ parameter models on single-node hardware
+• Escrow and payout pipeline for third-party hardware providers
 
-<span class="success">Status:</span> Production deployment on k3s cluster
+<span class="success">Status:</span> Live — marketplace open to providers and users
+<span class="cyan">Web:</span> <a href="https://gb10.studio" target="_blank">gb10.studio</a>
+</div>`;
+    }
+
+    projectGraceSquad() {
+        return `<div class="project-item">
+<span class="project-title">🙌 GraceSquad - Volunteer Scheduling for Churches & Nonprofits</span>
+
+<span class="info">Description:</span>
+Volunteer scheduling and member CRM for churches and nonprofits, built
+to replace the usual sprawl of Planning Center, SignUpGenius,
+spreadsheets and group chats with one integrated system. Includes a
+child-safety compliance module.
+
+<span class="info">Tech Stack:</span>
+<span class="project-tech">Stripe • SMS & Email Delivery • QR Check-in • CSV / PDF Export</span>
+
+<span class="info">Key Features:</span>
+• Auto-fill scheduling engine with 7-rule conflict detection
+• Volunteer and member CRM with skill and certification tracking
+• Child safety: background-check tracking, two-adult rule enforcement,
+  QR check-in kiosk
+• Automated SMS and email reminders
+• Donation and giving management
+• Drag-and-drop scheduling grid with a 10-report library
+
+<span class="info">Technical Highlights:</span>
+• Bulk generation of 20-slot schedules in under 2 seconds
+• Scales from small teams to unlimited membership rosters
+• Zero platform fee on donations — processor pass-through only
+
+<span class="success">Status:</span> Live — free and paid tiers; mobile app in progress
+<span class="cyan">Web:</span> <a href="https://gracesquad.org" target="_blank">gracesquad.org</a>
+</div>`;
+    }
+
+    projectTradefix() {
+        return `<div class="project-item">
+<span class="project-title">🔧 TradeFix - Field Service Platform for Trade Contractors</span>
+
+<span class="info">Description:</span>
+Field service management for independent HVAC, plumbing and electrical
+contractors — dispatch, estimates, invoicing and recurring memberships,
+scoped for 1-25 tech shops rather than enterprise fleets.
+
+<span class="info">Tech Stack:</span>
+<span class="project-tech">iOS • Android • Stripe (Card / ACH) • QuickBooks Online • Google Maps</span>
+
+<span class="info">Key Features:</span>
+• Drag-and-drop dispatch calendar with live GPS and travel-time ETA
+• SMS dispatch notifications to technicians and customers
+• Three-tier estimate builder with e-signature capture and PDF delivery
+• Auto-generated invoicing with overdue reminders
+• Membership module: plan tiers, visit tracking, renewal automation
+• Two-way QuickBooks Online sync
+
+<span class="info">Technical Highlights:</span>
+• 99.95% uptime SLA
+• 30-minute onboarding for a new shop
+• SOC 2 certification in progress
+
+<span class="success">Status:</span> Live — v1.0 in production
+<span class="cyan">Web:</span> <a href="https://tradefix.org" target="_blank">tradefix.org</a>
+</div>`;
+    }
+
+    projectCuralis() {
+        return `<div class="project-item">
+<span class="project-title">🩺 Curalis - HIPAA-Compliant Care Coordination</span>
+
+<span class="info">Description:</span>
+Care coordination platform for home care agencies, assisted living
+facilities and family caregivers. Centralizes caregiver scheduling,
+medication administration records and secure family-provider
+communication under HIPAA controls.
+
+<span class="info">Key Features:</span>
+• Caregiver shift scheduling with GPS-verified clock-in / clock-out
+• Electronic medication administration record (eMAR) covering
+  scheduled, PRN and witnessed doses
+• HIPAA-compliant secure messaging across caregivers, agencies, families
+• Real-time care plan visibility and shift summaries
+• Multi-tenant organization support for facilities
+• Full audit trails for compliance review
+
+<span class="info">Technical Highlights:</span>
+• Designed around HIPAA safeguards from the schema up
+• Multi-tenant isolation for facility and agency operators
+
+<span class="success">Status:</span> In development — early access waitlist open
+<span class="cyan">Web:</span> <a href="https://curalis.care" target="_blank">curalis.care</a>
+</div>`;
+    }
+
+    projectVestix() {
+        return `<div class="project-item">
+<span class="project-title">🏠 Vestix - Property Management for Independent Landlords</span>
+
+<span class="info">Description:</span>
+Property management software for independent landlords running 10-50
+units. Covers Section 8 voucher tracking, mixed portfolios and
+rent-to-own agreements — capabilities normally gated behind enterprise
+platforms with 50-unit minimums.
+
+<span class="info">Tech Stack:</span>
+<span class="project-tech">Stripe Connect • Browser-based E-Signature • CSV Import</span>
+
+<span class="info">Key Features:</span>
+• Section 8 / voucher tracking with dual-payer ledger management
+• Mixed portfolio dashboard: multifamily, short-term rentals,
+  manufactured housing
+• Rent-to-own lease tracking
+• Built-in e-signature with full audit trails
+• Owner statements with P&L and NOI calculations
+• Tenant payment portal and document storage
+
+<span class="info">Technical Highlights:</span>
+• AI-assisted lease renewal risk scoring and predictive maintenance
+• Dual-payer reconciliation surfaces housing-authority underpayments
+
+<span class="success">Status:</span> Live — 14-day trial, three pricing tiers
+<span class="cyan">Web:</span> <a href="https://vestix.org" target="_blank">vestix.org</a>
 </div>`;
     }
 
@@ -698,18 +754,20 @@ Kubernetes, optimizing food preparation workflow.
 ├── <span class="warning">skills.json</span>
 ├── <span class="value">experience.md</span>
 ├── <span class="value">contact.txt</span>
+├── <span class="value">company.txt</span>
+├── <span class="value">education.txt</span>
 ├── <span class="value">certifications.txt</span>
 ├── <span class="value">README.md</span>
 └── <span class="info">projects/</span>
-    ├── <span class="info">fleetwave/</span>
+    ├── <span class="info">gb10-studio/</span>
     │   └── <span class="value">info.md</span>
-    ├── <span class="info">menupilot/</span>
+    ├── <span class="info">gracesquad/</span>
     │   └── <span class="value">info.md</span>
-    ├── <span class="info">k3s-observatory/</span>
+    ├── <span class="info">tradefix/</span>
     │   └── <span class="value">info.md</span>
-    ├── <span class="info">counters-demo/</span>
+    ├── <span class="info">curalis/</span>
     │   └── <span class="value">info.md</span>
-    └── <span class="info">tckt/</span>
+    └── <span class="info">vestix/</span>
         └── <span class="value">info.md</span>`;
 
         this.addOutput('', treeOutput);
