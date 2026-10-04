@@ -1,7 +1,5 @@
-<!-- Banner (placeholder – I’ll design you a custom DevOps-themed graphic) -->
 <p align="center">
   <img src="https://raw.githubusercontent.com/craigderington/craigderington.github.io/refs/heads/master/assets/MicrosoftServer2016-Security.jpg" alt="security banner">
-</p>
 </p>
 <p align="left">
 👋 Hi, I'm Craig.  <a href="https://github.com/craigderington" class="float-right"><img src="https://img.shields.io/github/followers/craigderington?label=Follow&style=social" alt="Follow Me on GitHub"></a><br/>
@@ -88,9 +86,32 @@ Platforms built at [Pathfinder Networks](https://pathfinder-networks.org).
 📧 craig@craigderington.dev  
 🌐 [craigderington.github.io](https://craigderington.github.io)
 
+### Run the Terminal CV Locally
 
+The live site uses `index.html`, `styles.css`, and `terminal.js` directly.
+The terminal's `education.txt` and `certifications.txt` are virtual files;
+edit their content methods in `terminal.js`.
 
+Requirements: Node.js 22 or newer, npm, and Python 3 for the local server.
+There are no npm dependencies to install.
 
+```sh
+npm run dev      # Serve the working files at http://127.0.0.1:3000
+npm test         # Run terminal regression tests
+npm run build   # Recreate _site/ with public files only
+npm run preview # Build and serve _site/ at http://127.0.0.1:3000
+```
 
+Refresh the browser after editing files during development. Stop the server
+with Ctrl+C before starting another command on port 3000. The preview is a
+snapshot of the last build; restart it after making changes.
 
+The build preserves the public assets and Google verification file, adds
+`.nojekyll`, and excludes development files. `_site/` is generated output and
+is replaced on each build. It can be deployed to a static host. Branch-based
+GitHub Pages publishing remains supported through `_config.yml`.
 
+The original theme's `src/`, `_includes/`, `_layouts/`, and compiled assets
+are retained as historical sources. The terminal CV does not depend on them,
+Gulp, Sass, or a local Ruby/Jekyll installation. The original theme's MIT
+license attribution is preserved in `LICENSE`.

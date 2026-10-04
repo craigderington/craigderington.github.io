@@ -1,7 +1,7 @@
 # Site settings
 title: Craig Lawrence Derington
 description: "Veteran web developer automating the world with Docker, Python & Celery."
-url: "localhost:3000, craigderington.github.io" # the base hostname
+url: "https://craigderington.dev"
 
 # User settings
 username: Craig Derington
@@ -10,4 +10,13 @@ user_title: "There is no spoon..."
 email: craig@craigderington.dev
 github_username:  craigderington
 
-exclude: ['package.json', 'src' , 'node_modules']
+# Keep branch-based GitHub Pages publishing compatible with the static CV.
+exclude:
+  - package.json
+  - package-lock.json
+  - scripts
+  - src
+  - node_modules
+  - tests
+  - README.md
+  - ascii-name.txt

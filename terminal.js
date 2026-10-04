@@ -11,7 +11,12 @@ class Terminal {
         this.currentDirectory = '~';
         this.directories = {
             '~': ['about.txt', 'skills.json', 'experience.md', 'projects/', 'contact.txt', 'company.txt', 'education.txt', 'certifications.txt', 'README.md'],
-            'projects': ['gb10-studio/', 'gracesquad/', 'tradefix/', 'curalis/', 'vestix/']
+            'projects': ['gb10-studio/', 'gracesquad/', 'tradefix/', 'curalis/', 'vestix/'],
+            'projects/gb10-studio': ['info.md'],
+            'projects/gracesquad': ['info.md'],
+            'projects/tradefix': ['info.md'],
+            'projects/curalis': ['info.md'],
+            'projects/vestix': ['info.md']
         };
 
         this.init();
@@ -22,8 +27,12 @@ class Terminal {
         this.displayWelcome();
         this.input.focus();
 
-        // Refocus on click anywhere
-        document.addEventListener('click', () => this.input.focus());
+        // Keep links and selected text usable while allowing click-to-type.
+        document.getElementById('terminal').addEventListener('click', (e) => {
+            if (!e.target.closest('a, button, input') && window.getSelection().isCollapsed) {
+                this.input.focus();
+            }
+        });
     }
 
     handleKeyDown(e) {
@@ -59,7 +68,8 @@ class Terminal {
         } else if (e.ctrlKey && e.key === 'l') {
             e.preventDefault();
             this.clearScreen();
-        } else if (e.ctrlKey && e.key === 'c') {
+        } else if (e.ctrlKey && e.key === 'c' && window.getSelection().isCollapsed
+            && this.input.selectionStart === this.input.selectionEnd) {
             e.preventDefault();
             this.addOutput(this.input.value, '^C');
             this.input.value = '';
@@ -96,7 +106,7 @@ class Terminal {
     }
 
     executeCommand(input) {
-        const parts = input.trim().split(' ');
+        const parts = input.trim().split(/\s+/);
         const command = parts[0].toLowerCase();
         const args = parts.slice(1);
 
@@ -122,12 +132,12 @@ class Terminal {
             'history': () => this.history(),
         };
 
-        if (commands[command]) {
+        if (Object.hasOwn(commands, command)) {
             commands[command]();
         } else if (input.trim() === '') {
             // Empty command, just show prompt
         } else {
-            this.addOutput('', `<span class="error">Command not found: ${command}</span>\n<span class="info">Type 'help' for available commands.</span>`);
+            this.addOutput('', `<span class="error">Command not found: ${this.escapeHtml(command)}</span>\n<span class="info">Type 'help' for available commands.</span>`);
         }
 
         this.scrollToBottom();
@@ -181,8 +191,12 @@ class Terminal {
     }
 
     ls(args) {
-        const dir = this.currentDirectory;
-        const files = this.directories[dir] || [];
+        const dir = args.length ? this.resolvePath(args[0]) : this.currentDirectory;
+        if (!Object.hasOwn(this.directories, dir)) {
+            this.addOutput('', `<span class="error">ls: ${this.escapeHtml(args[0])}: No such directory</span>`);
+            return;
+        }
+        const files = this.directories[dir];
 
         let output = files.map(file => {
             if (file.endsWith('/')) {
@@ -211,7 +225,7 @@ class Terminal {
         if (content) {
             this.addOutput('', content);
         } else {
-            this.addOutput('', `<span class="error">cat: ${file}: No such file or directory</span>`);
+            this.addOutput('', `<span class="error">cat: ${this.escapeHtml(file)}: No such file or directory</span>`);
         }
     }
 
@@ -232,7 +246,8 @@ class Terminal {
             'projects/vestix/info.md': this.projectVestix(),
         };
 
-        return files[filename] || files[`${this.currentDirectory}/${filename}`] || null;
+        const path = this.resolvePath(filename);
+        return Object.hasOwn(files, path) ? files[path] : null;
     }
 
     aboutContent() {
@@ -432,7 +447,7 @@ faith-based organizations.
         return `<span class="highlight">Education</span>
 
 <span class="success">🎓 DEGREE:</span>
-  ✓ Associate of Science — Specialization in Cybersecurity
+  ✓ Associate in Science — Specialization in Cybersecurity
     Seminole State College of Florida
     Conferred August 2026
 
@@ -448,10 +463,11 @@ continuous learning.`;
         return `<span class="highlight">Certifications & Learning Path</span>
 
 <span class="success">🎓 EDUCATION:</span>
-  ✓ A.S. Cybersecurity — Seminole State College (August 2026)
+  ✓ Associate in Science — Specialization in Cybersecurity
+    Seminole State College of Florida — Conferred August 2026
     Dean's List · 3.6 GPA — see <span class="cyan">cat education.txt</span>
 
-<span class="success">🎯 CURRENT FOCUS (2025):</span>
+<span class="success">🎯 CURRENT FOCUS:</span>
   ☐ CompTIA Network+ (In Progress)
   ☐ CompTIA Security+ (In Progress)
 
@@ -626,41 +642,30 @@ platforms with 50-unit minimums.
 </div>`;
     }
 
+    resolvePath(path) {
+        const absolute = path === '~' || path.startsWith('~/') || path.startsWith('/');
+        const segments = absolute || this.currentDirectory === '~'
+            ? [] : this.currentDirectory.split('/');
+        const relative = path.replace(/^~(?:\/|$)/, '').replace(/^\/home\/craig(?:\/|$)/, '');
+
+        for (const segment of relative.split('/')) {
+            if (!segment || segment === '.') continue;
+            if (segment === '..') segments.pop();
+            else segments.push(segment);
+        }
+
+        return segments.join('/') || '~';
+    }
+
     cd(args) {
-        if (args.length === 0 || args[0] === '~') {
-            this.currentDirectory = '~';
+        const dir = args[0] || '~';
+        const target = this.resolvePath(dir);
+        if (Object.hasOwn(this.directories, target)) {
+            this.currentDirectory = target;
             this.updatePrompt();
-            return;
-        }
-
-        const dir = args[0];
-
-        if (dir === '..') {
-            if (this.currentDirectory !== '~') {
-                this.currentDirectory = '~';
-                this.updatePrompt();
-            }
-            return;
-        }
-
-        // Check if directory exists
-        const targetDir = dir.replace('/', '');
-        if (this.directories[targetDir]) {
-            this.currentDirectory = targetDir;
-            this.updatePrompt();
-        } else if (this.currentDirectory === '~' && this.directories['~'].includes(dir)) {
-            // It's a directory in home
-            if (dir.endsWith('/')) {
-                const dirName = dir.slice(0, -1);
-                if (this.directories[dirName]) {
-                    this.currentDirectory = dirName;
-                    this.updatePrompt();
-                    return;
-                }
-            }
-            this.addOutput('', `<span class="error">cd: ${dir}: Not a directory</span>`);
         } else {
-            this.addOutput('', `<span class="error">cd: ${dir}: No such file or directory</span>`);
+            const reason = this.getFileContent(dir) ? 'Not a directory' : 'No such file or directory';
+            this.addOutput('', `<span class="error">cd: ${this.escapeHtml(dir)}: ${reason}</span>`);
         }
     }
 
@@ -749,28 +754,21 @@ platforms with 50-unit minimums.
     }
 
     tree() {
-        const treeOutput = `<span class="value">.</span>
-├── <span class="value">about.txt</span>
-├── <span class="warning">skills.json</span>
-├── <span class="value">experience.md</span>
-├── <span class="value">contact.txt</span>
-├── <span class="value">company.txt</span>
-├── <span class="value">education.txt</span>
-├── <span class="value">certifications.txt</span>
-├── <span class="value">README.md</span>
-└── <span class="info">projects/</span>
-    ├── <span class="info">gb10-studio/</span>
-    │   └── <span class="value">info.md</span>
-    ├── <span class="info">gracesquad/</span>
-    │   └── <span class="value">info.md</span>
-    ├── <span class="info">tradefix/</span>
-    │   └── <span class="value">info.md</span>
-    ├── <span class="info">curalis/</span>
-    │   └── <span class="value">info.md</span>
-    └── <span class="info">vestix/</span>
-        └── <span class="value">info.md</span>`;
-
-        this.addOutput('', treeOutput);
+        const lines = ['<span class="value">.</span>'];
+        const walk = (directory, prefix) => {
+            const entries = this.directories[directory];
+            entries.forEach((entry, index) => {
+                const last = index === entries.length - 1;
+                const isDirectory = entry.endsWith('/');
+                lines.push(`${prefix}${last ? '└── ' : '├── '}<span class="${isDirectory ? 'info' : 'value'}">${entry}</span>`);
+                if (isDirectory) {
+                    const child = `${directory === '~' ? '' : directory + '/'}${entry.slice(0, -1)}`;
+                    walk(child, prefix + (last ? '    ' : '│   '));
+                }
+            });
+        };
+        walk(this.currentDirectory, '');
+        this.addOutput('', lines.join('\n'));
     }
 
     curl(args) {
@@ -807,21 +805,21 @@ platforms with 50-unit minimums.
 <span class="green">Perfect weather for coding!</span>`,
         };
 
-        if (endpoints[endpoint]) {
+        if (Object.hasOwn(endpoints, endpoint)) {
             this.addOutput('', endpoints[endpoint]);
         } else {
-            this.addOutput('', `<span class="error">curl: (6) Could not resolve host: ${endpoint}</span>
+            this.addOutput('', `<span class="error">curl: (6) Could not resolve host: ${this.escapeHtml(endpoint)}</span>
 <span class="info">Try: contact, github, wttr.in</span>`);
         }
     }
 
     git(args) {
         if (args.length === 0) {
-            this.addOutput('', `<span class="info">usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+            this.addOutput('', `<span class="info">usage: git [--version] [--help] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]
+           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           <command> [<args>]</span>`);
+           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
+           &lt;command&gt; [&lt;args&gt;]</span>`);
             return;
         }
 
@@ -834,7 +832,7 @@ platforms with 50-unit minimums.
 nothing to commit, working tree clean`);
         } else if (subcommand === 'log') {
             this.addOutput('', `<span class="yellow">commit a1b2c3d</span> (HEAD -> master, origin/master)
-Author: Craig Derington <craig@craigderington.dev>
+Author: Craig Derington &lt;craig@craigderington.dev&gt;
 Date:   ${new Date().toDateString()}
 
     feat: Add interactive terminal CV with Tokyo Night theme
@@ -844,7 +842,7 @@ Date:   ${new Date().toDateString()}
     - Added comprehensive CV content
     - Interactive file system navigation`);
         } else {
-            this.addOutput('', `<span class="error">git: '${subcommand}' is not a git command. See 'git --help'.</span>`);
+            this.addOutput('', `<span class="error">git: '${this.escapeHtml(subcommand)}' is not a git command. See 'git --help'.</span>`);
         }
     }
 
@@ -879,17 +877,21 @@ Date:   ${new Date().toDateString()}
 
     autoComplete() {
         const value = this.input.value;
-        const parts = value.split(' ');
-        const command = parts[0];
+        const parts = value.split(/\s+/);
 
         // Simple autocomplete for file names
         if (parts.length > 1) {
             const partial = parts[parts.length - 1];
-            const files = this.directories[this.currentDirectory] || [];
-            const matches = files.filter(f => f.startsWith(partial));
+            const slash = partial.lastIndexOf('/');
+            const prefix = partial.slice(0, slash + 1);
+            const name = partial.slice(slash + 1);
+            const directory = prefix ? this.resolvePath(prefix) : this.currentDirectory;
+            const files = Object.hasOwn(this.directories, directory) ? this.directories[directory] : [];
+            const matches = files.filter(f => f.startsWith(name)
+                && (parts[0].toLowerCase() !== 'cd' || f.endsWith('/')));
 
             if (matches.length === 1) {
-                parts[parts.length - 1] = matches[0];
+                parts[parts.length - 1] = prefix + matches[0];
                 this.input.value = parts.join(' ');
             }
         }
