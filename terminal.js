@@ -2,82 +2,82 @@
 // Tokyo Night Theme
 
 class Terminal {
-    constructor() {
-        this.output = document.getElementById('output');
-        this.input = document.getElementById('input');
-        this.prompt = document.getElementById('prompt');
-        this.commandHistory = [];
-        this.historyIndex = -1;
-        this.currentDirectory = '~';
-        this.directories = {
-            '~': ['about.txt', 'skills.json', 'experience.md', 'projects/', 'contact.txt', 'company.txt', 'education.txt', 'certifications.txt', 'README.md'],
-            'projects': ['gb10-studio/', 'gracesquad/', 'tradefix/', 'curalis/', 'vestix/'],
-            'projects/gb10-studio': ['info.md'],
-            'projects/gracesquad': ['info.md'],
-            'projects/tradefix': ['info.md'],
-            'projects/curalis': ['info.md'],
-            'projects/vestix': ['info.md']
-        };
+  constructor() {
+    this.output = document.getElementById('output');
+    this.input = document.getElementById('input');
+    this.prompt = document.getElementById('prompt');
+    this.commandHistory = [];
+    this.historyIndex = -1;
+    this.currentDirectory = '~';
+    this.directories = {
+      '~': ['about.txt', 'skills.json', 'experience.md', 'projects/', 'contact.txt', 'company.txt', 'education.txt', 'certifications.txt', 'README.md'],
+      'projects': ['gb10-studio/', 'gracesquad/', 'tradefix/', 'curalis/', 'vestix/'],
+      'projects/gb10-studio': ['info.md'],
+      'projects/gracesquad': ['info.md'],
+      'projects/tradefix': ['info.md'],
+      'projects/curalis': ['info.md'],
+      'projects/vestix': ['info.md']
+    };
 
-        this.init();
-    }
+    this.init();
+  }
 
-    init() {
-        this.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
-        this.displayWelcome();
+  init() {
+    this.input.addEventListener('keydown', (e) => this.handleKeyDown(e));
+    this.displayWelcome();
+    this.input.focus();
+
+    // Keep links and selected text usable while allowing click-to-type.
+    document.getElementById('terminal').addEventListener('click', (e) => {
+      if (!e.target.closest('a, button, input') && window.getSelection().isCollapsed) {
         this.input.focus();
+      }
+    });
+  }
 
-        // Keep links and selected text usable while allowing click-to-type.
-        document.getElementById('terminal').addEventListener('click', (e) => {
-            if (!e.target.closest('a, button, input') && window.getSelection().isCollapsed) {
-                this.input.focus();
-            }
-        });
+  handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const command = this.input.value.trim();
+      if (command) {
+        this.commandHistory.push(command);
+        this.historyIndex = this.commandHistory.length;
+        this.executeCommand(command);
+      } else {
+        this.addOutput('', '');
+      }
+      this.input.value = '';
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (this.historyIndex > 0) {
+        this.historyIndex--;
+        this.input.value = this.commandHistory[this.historyIndex];
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (this.historyIndex < this.commandHistory.length - 1) {
+        this.historyIndex++;
+        this.input.value = this.commandHistory[this.historyIndex];
+      } else {
+        this.historyIndex = this.commandHistory.length;
+        this.input.value = '';
+      }
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+      this.autoComplete();
+    } else if (e.ctrlKey && e.key === 'l') {
+      e.preventDefault();
+      this.clearScreen();
+    } else if (e.ctrlKey && e.key === 'c' && window.getSelection().isCollapsed
+      && this.input.selectionStart === this.input.selectionEnd) {
+      e.preventDefault();
+      this.addOutput(this.input.value, '^C');
+      this.input.value = '';
     }
+  }
 
-    handleKeyDown(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const command = this.input.value.trim();
-            if (command) {
-                this.commandHistory.push(command);
-                this.historyIndex = this.commandHistory.length;
-                this.executeCommand(command);
-            } else {
-                this.addOutput('', '');
-            }
-            this.input.value = '';
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            if (this.historyIndex > 0) {
-                this.historyIndex--;
-                this.input.value = this.commandHistory[this.historyIndex];
-            }
-        } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            if (this.historyIndex < this.commandHistory.length - 1) {
-                this.historyIndex++;
-                this.input.value = this.commandHistory[this.historyIndex];
-            } else {
-                this.historyIndex = this.commandHistory.length;
-                this.input.value = '';
-            }
-        } else if (e.key === 'Tab') {
-            e.preventDefault();
-            this.autoComplete();
-        } else if (e.ctrlKey && e.key === 'l') {
-            e.preventDefault();
-            this.clearScreen();
-        } else if (e.ctrlKey && e.key === 'c' && window.getSelection().isCollapsed
-            && this.input.selectionStart === this.input.selectionEnd) {
-            e.preventDefault();
-            this.addOutput(this.input.value, '^C');
-            this.input.value = '';
-        }
-    }
-
-    displayWelcome() {
-        const asciiArt = `
+  displayWelcome() {
+    const asciiArt = `
 ╔═══════════════════════════════════════════════════════════════════╗
 ║                                                                   ║
 ║              C R A I G   D E R I N G T O N                        ║
@@ -87,7 +87,7 @@ class Terminal {
 ╚═══════════════════════════════════════════════════════════════════╝
         `;
 
-        const welcome = `<div class="ascii-art">${asciiArt}</div>
+    const welcome = `<div class="ascii-art">${asciiArt}</div>
 <div class="welcome-banner">
     <div class="banner-title">Welcome to my interactive terminal CV!</div>
     <div class="banner-text">
@@ -99,72 +99,72 @@ class Terminal {
 <span class="info">Type <span class="highlight">'help'</span> to see available commands or <span class="highlight">'ls'</span> to list files.</span>
 `;
 
-        const div = document.createElement('div');
-        div.innerHTML = welcome;
-        this.output.appendChild(div);
-        this.scrollToBottom();
+    const div = document.createElement('div');
+    div.innerHTML = welcome;
+    this.output.appendChild(div);
+    this.scrollToBottom();
+  }
+
+  executeCommand(input) {
+    const parts = input.trim().split(/\s+/);
+    const command = parts[0].toLowerCase();
+    const args = parts.slice(1);
+
+    this.addCommandToOutput(input);
+
+    const commands = {
+      'help': () => this.help(),
+      'ls': () => this.ls(args),
+      'cat': () => this.cat(args),
+      'cd': () => this.cd(args),
+      'pwd': () => this.pwd(),
+      'whoami': () => this.whoami(),
+      'clear': () => this.clearScreen(),
+      'nerdfetch': () => this.nerdfetch(),
+      'vim': () => this.vim(),
+      'nvim': () => this.vim(),
+      'sudo': () => this.sudo(args),
+      'exit': () => this.exit(),
+      'tree': () => this.tree(),
+      'curl': () => this.curl(args),
+      'git': () => this.git(args),
+      'echo': () => this.echo(args),
+      'history': () => this.history(),
+    };
+
+    if (Object.hasOwn(commands, command)) {
+      commands[command]();
+    } else if (input.trim() === '') {
+      // Empty command, just show prompt
+    } else {
+      this.addOutput('', `<span class="error">Command not found: ${this.escapeHtml(command)}</span>\n<span class="info">Type 'help' for available commands.</span>`);
     }
 
-    executeCommand(input) {
-        const parts = input.trim().split(/\s+/);
-        const command = parts[0].toLowerCase();
-        const args = parts.slice(1);
+    this.scrollToBottom();
+  }
 
-        this.addCommandToOutput(input);
+  addCommandToOutput(command) {
+    const promptSymbol = this.currentDirectory === '~'
+      ? `guest@craig:~$`
+      : `guest@craig:~/${this.currentDirectory}$`;
 
-        const commands = {
-            'help': () => this.help(),
-            'ls': () => this.ls(args),
-            'cat': () => this.cat(args),
-            'cd': () => this.cd(args),
-            'pwd': () => this.pwd(),
-            'whoami': () => this.whoami(),
-            'clear': () => this.clearScreen(),
-            'nerdfetch': () => this.nerdfetch(),
-            'vim': () => this.vim(),
-            'nvim': () => this.vim(),
-            'sudo': () => this.sudo(args),
-            'exit': () => this.exit(),
-            'tree': () => this.tree(),
-            'curl': () => this.curl(args),
-            'git': () => this.git(args),
-            'echo': () => this.echo(args),
-            'history': () => this.history(),
-        };
+    const div = document.createElement('div');
+    div.className = 'output-line command';
+    div.innerHTML = `<span class="prompt-text">${promptSymbol}</span><span class="command-text">${this.escapeHtml(command)}</span>`;
+    this.output.appendChild(div);
+  }
 
-        if (Object.hasOwn(commands, command)) {
-            commands[command]();
-        } else if (input.trim() === '') {
-            // Empty command, just show prompt
-        } else {
-            this.addOutput('', `<span class="error">Command not found: ${this.escapeHtml(command)}</span>\n<span class="info">Type 'help' for available commands.</span>`);
-        }
-
-        this.scrollToBottom();
+  addOutput(command, result) {
+    if (result) {
+      const div = document.createElement('div');
+      div.className = 'output-line result';
+      div.innerHTML = result;
+      this.output.appendChild(div);
     }
+  }
 
-    addCommandToOutput(command) {
-        const promptSymbol = this.currentDirectory === '~'
-            ? `guest@craig:~$`
-            : `guest@craig:~/${this.currentDirectory}$`;
-
-        const div = document.createElement('div');
-        div.className = 'output-line command';
-        div.innerHTML = `<span class="prompt-text">${promptSymbol}</span><span class="command-text">${this.escapeHtml(command)}</span>`;
-        this.output.appendChild(div);
-    }
-
-    addOutput(command, result) {
-        if (result) {
-            const div = document.createElement('div');
-            div.className = 'output-line result';
-            div.innerHTML = result;
-            this.output.appendChild(div);
-        }
-    }
-
-    help() {
-        const helpText = `<span class="success">Available Commands:</span>
+  help() {
+    const helpText = `<span class="success">Available Commands:</span>
 
 <table>
   <tr><td class="key">help</td><td class="value">Display this help message</td></tr>
@@ -187,71 +187,71 @@ class Terminal {
   • Use <span class="highlight">↑/↓</span> arrows for command history
   • Try <span class="highlight">cat README.md</span> for a quick overview`;
 
-        this.addOutput('', helpText);
+    this.addOutput('', helpText);
+  }
+
+  ls(args) {
+    const dir = args.length ? this.resolvePath(args[0]) : this.currentDirectory;
+    if (!Object.hasOwn(this.directories, dir)) {
+      this.addOutput('', `<span class="error">ls: ${this.escapeHtml(args[0])}: No such directory</span>`);
+      return;
+    }
+    const files = this.directories[dir];
+
+    let output = files.map(file => {
+      if (file.endsWith('/')) {
+        return `<span class="info">${file}</span>`;
+      } else if (file.endsWith('.txt') || file.endsWith('.md')) {
+        return `<span class="value">${file}</span>`;
+      } else if (file.endsWith('.json')) {
+        return `<span class="warning">${file}</span>`;
+      } else {
+        return `<span class="success">${file}</span>`;
+      }
+    }).join('  ');
+
+    this.addOutput('', output);
+  }
+
+  cat(args) {
+    if (args.length === 0) {
+      this.addOutput('', '<span class="error">cat: missing file operand</span>');
+      return;
     }
 
-    ls(args) {
-        const dir = args.length ? this.resolvePath(args[0]) : this.currentDirectory;
-        if (!Object.hasOwn(this.directories, dir)) {
-            this.addOutput('', `<span class="error">ls: ${this.escapeHtml(args[0])}: No such directory</span>`);
-            return;
-        }
-        const files = this.directories[dir];
+    const file = args[0];
+    const content = this.getFileContent(file);
 
-        let output = files.map(file => {
-            if (file.endsWith('/')) {
-                return `<span class="info">${file}</span>`;
-            } else if (file.endsWith('.txt') || file.endsWith('.md')) {
-                return `<span class="value">${file}</span>`;
-            } else if (file.endsWith('.json')) {
-                return `<span class="warning">${file}</span>`;
-            } else {
-                return `<span class="success">${file}</span>`;
-            }
-        }).join('  ');
-
-        this.addOutput('', output);
+    if (content) {
+      this.addOutput('', content);
+    } else {
+      this.addOutput('', `<span class="error">cat: ${this.escapeHtml(file)}: No such file or directory</span>`);
     }
+  }
 
-    cat(args) {
-        if (args.length === 0) {
-            this.addOutput('', '<span class="error">cat: missing file operand</span>');
-            return;
-        }
+  getFileContent(filename) {
+    const files = {
+      'about.txt': this.aboutContent(),
+      'README.md': this.readmeContent(),
+      'skills.json': this.skillsContent(),
+      'experience.md': this.experienceContent(),
+      'contact.txt': this.contactContent(),
+      'company.txt': this.companyContent(),
+      'education.txt': this.educationContent(),
+      'certifications.txt': this.certificationsContent(),
+      'projects/gb10-studio/info.md': this.projectGb10Studio(),
+      'projects/gracesquad/info.md': this.projectGraceSquad(),
+      'projects/tradefix/info.md': this.projectTradefix(),
+      'projects/curalis/info.md': this.projectCuralis(),
+      'projects/vestix/info.md': this.projectVestix(),
+    };
 
-        const file = args[0];
-        const content = this.getFileContent(file);
+    const path = this.resolvePath(filename);
+    return Object.hasOwn(files, path) ? files[path] : null;
+  }
 
-        if (content) {
-            this.addOutput('', content);
-        } else {
-            this.addOutput('', `<span class="error">cat: ${this.escapeHtml(file)}: No such file or directory</span>`);
-        }
-    }
-
-    getFileContent(filename) {
-        const files = {
-            'about.txt': this.aboutContent(),
-            'README.md': this.readmeContent(),
-            'skills.json': this.skillsContent(),
-            'experience.md': this.experienceContent(),
-            'contact.txt': this.contactContent(),
-            'company.txt': this.companyContent(),
-            'education.txt': this.educationContent(),
-            'certifications.txt': this.certificationsContent(),
-            'projects/gb10-studio/info.md': this.projectGb10Studio(),
-            'projects/gracesquad/info.md': this.projectGraceSquad(),
-            'projects/tradefix/info.md': this.projectTradefix(),
-            'projects/curalis/info.md': this.projectCuralis(),
-            'projects/vestix/info.md': this.projectVestix(),
-        };
-
-        const path = this.resolvePath(filename);
-        return Object.hasOwn(files, path) ? files[path] : null;
-    }
-
-    aboutContent() {
-        return `<span class="success">╔═══════════════════════════════════════════════════════════╗</span>
+  aboutContent() {
+    return `<span class="success">╔═══════════════════════════════════════════════════════════╗</span>
 <span class="success">║</span>  <span class="highlight">CRAIG LAWRENCE DERINGTON</span>                              <span class="success">║</span>
 <span class="success">║</span>  Full Stack Developer & DevOps Engineer                  <span class="success">║</span>
 <span class="success">╚═══════════════════════════════════════════════════════════╝</span>
@@ -274,15 +274,15 @@ spans both on-premises infrastructure and cloud environments.
 <span class="highlight">DEVELOPMENT ENVIRONMENT:</span>
 • Editor:     Neovim (of course)
 • OS:         Arch Linux / Fedora
-• WM:         Hyprland / i3wm
+• WM:         Hyprland / Omarchy
 • Shell:      Bash with custom configs
 • Terminal:   Alacritty / Kitty
 
 <span class="info">Quote:</span> "I write the code that makes the whole world sing"`;
-    }
+  }
 
-    readmeContent() {
-        return `<span class="highlight"># Craig Derington - Terminal CV</span>
+  readmeContent() {
+    return `<span class="highlight"># Craig Derington - Terminal CV</span>
 
 <span class="success">## Quick Start</span>
 Try these commands to explore my professional profile:
@@ -306,10 +306,10 @@ This interactive CV is open source! Check out the repository:
 <a href="https://github.com/craigderington" target="_blank">github.com/craigderington</a>
 
 <span class="info">Powered by: HTML, CSS, JavaScript & Tokyo Night theme</span>`;
-    }
+  }
 
-    skillsContent() {
-        return `<span class="warning">{</span>
+  skillsContent() {
+    return `<span class="warning">{</span>
   <span class="cyan">"core_languages"</span>: [
     <span class="green">"Java"</span>,
     <span class="green">"Python"</span>,
@@ -358,10 +358,10 @@ This interactive CV is open source! Check out the repository:
     <span class="green">"Postman"</span>
   ]
 <span class="warning">}</span>`;
-    }
+  }
 
-    experienceContent() {
-        return `<span class="highlight"># Professional Experience</span>
+  experienceContent() {
+    return `<span class="highlight"># Professional Experience</span>
 
 <div class="project-item">
 <span class="project-title">🚀 Full Stack Developer & DevOps Engineer</span>
@@ -393,10 +393,10 @@ This interactive CV is open source! Check out the repository:
 </div>
 
 <span class="info">Want to know more? Download my full CV or connect via LinkedIn!</span>`;
-    }
+  }
 
-    contactContent() {
-        return `<span class="success">╔═══════════════════════════════════════════════════╗</span>
+  contactContent() {
+    return `<span class="success">╔═══════════════════════════════════════════════════╗</span>
 <span class="success">║</span>  <span class="highlight">CONTACT INFORMATION</span>                            <span class="success">║</span>
 <span class="success">╚═══════════════════════════════════════════════════╝</span>
 
@@ -414,10 +414,10 @@ This interactive CV is open source! Check out the repository:
   • Open source collaboration
   • Technical consulting
   • Coffee and code discussions`;
-    }
+  }
 
-    companyContent() {
-        return `<span class="highlight">Pathfinder Networks</span>
+  companyContent() {
+    return `<span class="highlight">Pathfinder Networks</span>
 <a href="https://pathfinder-networks.org" target="_blank">pathfinder-networks.org</a>
 
 <span class="success">🏢 ABOUT:</span>
@@ -441,10 +441,10 @@ faith-based organizations.
   GitHub:  <a href="https://github.com/Pathfinder-Networks" target="_blank">github.com/Pathfinder-Networks</a>
 
 <span class="cyan">💡 TIP:</span> Run <span class="cyan">cd projects</span> for engineering detail on each platform.`;
-    }
+  }
 
-    educationContent() {
-        return `<span class="highlight">Education</span>
+  educationContent() {
+    return `<span class="highlight">Education</span>
 
 <span class="success">🎓 DEGREE:</span>
   ✓ Associate in Science — Specialization in Cybersecurity
@@ -453,19 +453,19 @@ faith-based organizations.
 
 <span class="warning">🏆 HONORS:</span>
   ✓ Dean's List
-  ✓ Cumulative GPA: 3.6
+  ✓ Cumulative GPA: 3.2
 
 <span class="cyan">💡 TIP:</span> See <span class="cyan">cat certifications.txt</span> for certifications and
 continuous learning.`;
-    }
+  }
 
-    certificationsContent() {
-        return `<span class="highlight">Certifications & Learning Path</span>
+  certificationsContent() {
+    return `<span class="highlight">Certifications & Learning Path</span>
 
 <span class="success">🎓 EDUCATION:</span>
   ✓ Associate in Science — Specialization in Cybersecurity
     Seminole State College of Florida — Conferred August 2026
-    Dean's List · 3.6 GPA — see <span class="cyan">cat education.txt</span>
+    Dean's List · 3.2 GPA — see <span class="cyan">cat education.txt</span>
 
 <span class="success">🎯 CURRENT FOCUS:</span>
   ☐ CompTIA Network+ (In Progress)
@@ -488,10 +488,10 @@ continuous learning.`;
 <span class="cyan">💡 TIP:</span> I believe in practical experience over paper certifications,
 but I'm actively pursuing industry-recognized credentials to
 formalize my expertise.`;
-    }
+  }
 
-    projectGb10Studio() {
-        return `<div class="project-item">
+  projectGb10Studio() {
+    return `<div class="project-item">
 <span class="project-title">⚡ GB10 Studio - GB10 Compute Marketplace</span>
 
 <span class="info">Description:</span>
@@ -519,10 +519,10 @@ hardware owners list their devices on a global marketplace.
 <span class="success">Status:</span> Live — marketplace open to providers and users
 <span class="cyan">Web:</span> <a href="https://gb10.studio" target="_blank">gb10.studio</a>
 </div>`;
-    }
+  }
 
-    projectGraceSquad() {
-        return `<div class="project-item">
+  projectGraceSquad() {
+    return `<div class="project-item">
 <span class="project-title">🙌 GraceSquad - Volunteer Scheduling for Churches & Nonprofits</span>
 
 <span class="info">Description:</span>
@@ -551,10 +551,10 @@ child-safety compliance module.
 <span class="success">Status:</span> Live — free and paid tiers; mobile app in progress
 <span class="cyan">Web:</span> <a href="https://gracesquad.org" target="_blank">gracesquad.org</a>
 </div>`;
-    }
+  }
 
-    projectTradefix() {
-        return `<div class="project-item">
+  projectTradefix() {
+    return `<div class="project-item">
 <span class="project-title">🔧 TradeFix - Field Service Platform for Trade Contractors</span>
 
 <span class="info">Description:</span>
@@ -581,10 +581,10 @@ scoped for 1-25 tech shops rather than enterprise fleets.
 <span class="success">Status:</span> Live — v1.0 in production
 <span class="cyan">Web:</span> <a href="https://tradefix.org" target="_blank">tradefix.org</a>
 </div>`;
-    }
+  }
 
-    projectCuralis() {
-        return `<div class="project-item">
+  projectCuralis() {
+    return `<div class="project-item">
 <span class="project-title">🩺 Curalis - HIPAA-Compliant Care Coordination</span>
 
 <span class="info">Description:</span>
@@ -609,10 +609,10 @@ communication under HIPAA controls.
 <span class="success">Status:</span> In development — early access waitlist open
 <span class="cyan">Web:</span> <a href="https://curalis.care" target="_blank">curalis.care</a>
 </div>`;
-    }
+  }
 
-    projectVestix() {
-        return `<div class="project-item">
+  projectVestix() {
+    return `<div class="project-item">
 <span class="project-title">🏠 Vestix - Property Management for Independent Landlords</span>
 
 <span class="info">Description:</span>
@@ -640,42 +640,42 @@ platforms with 50-unit minimums.
 <span class="success">Status:</span> Live — 14-day trial, three pricing tiers
 <span class="cyan">Web:</span> <a href="https://vestix.org" target="_blank">vestix.org</a>
 </div>`;
+  }
+
+  resolvePath(path) {
+    const absolute = path === '~' || path.startsWith('~/') || path.startsWith('/');
+    const segments = absolute || this.currentDirectory === '~'
+      ? [] : this.currentDirectory.split('/');
+    const relative = path.replace(/^~(?:\/|$)/, '').replace(/^\/home\/craig(?:\/|$)/, '');
+
+    for (const segment of relative.split('/')) {
+      if (!segment || segment === '.') continue;
+      if (segment === '..') segments.pop();
+      else segments.push(segment);
     }
 
-    resolvePath(path) {
-        const absolute = path === '~' || path.startsWith('~/') || path.startsWith('/');
-        const segments = absolute || this.currentDirectory === '~'
-            ? [] : this.currentDirectory.split('/');
-        const relative = path.replace(/^~(?:\/|$)/, '').replace(/^\/home\/craig(?:\/|$)/, '');
+    return segments.join('/') || '~';
+  }
 
-        for (const segment of relative.split('/')) {
-            if (!segment || segment === '.') continue;
-            if (segment === '..') segments.pop();
-            else segments.push(segment);
-        }
-
-        return segments.join('/') || '~';
+  cd(args) {
+    const dir = args[0] || '~';
+    const target = this.resolvePath(dir);
+    if (Object.hasOwn(this.directories, target)) {
+      this.currentDirectory = target;
+      this.updatePrompt();
+    } else {
+      const reason = this.getFileContent(dir) ? 'Not a directory' : 'No such file or directory';
+      this.addOutput('', `<span class="error">cd: ${this.escapeHtml(dir)}: ${reason}</span>`);
     }
+  }
 
-    cd(args) {
-        const dir = args[0] || '~';
-        const target = this.resolvePath(dir);
-        if (Object.hasOwn(this.directories, target)) {
-            this.currentDirectory = target;
-            this.updatePrompt();
-        } else {
-            const reason = this.getFileContent(dir) ? 'Not a directory' : 'No such file or directory';
-            this.addOutput('', `<span class="error">cd: ${this.escapeHtml(dir)}: ${reason}</span>`);
-        }
-    }
+  pwd() {
+    const path = this.currentDirectory === '~' ? '/home/craig' : `/home/craig/${this.currentDirectory}`;
+    this.addOutput('', `<span class="value">${path}</span>`);
+  }
 
-    pwd() {
-        const path = this.currentDirectory === '~' ? '/home/craig' : `/home/craig/${this.currentDirectory}`;
-        this.addOutput('', `<span class="value">${path}</span>`);
-    }
-
-    whoami() {
-        const info = `<span class="highlight">craig@orlando</span>
+  whoami() {
+    const info = `<span class="highlight">craig@wolf359</span>
 
 <span class="cyan">User:</span>         Craig Lawrence Derington
 <span class="cyan">Role:</span>         Full Stack Developer & DevOps Engineer
@@ -686,11 +686,11 @@ platforms with 50-unit minimums.
 
 <span class="info">For more details, try:</span> cat about.txt`;
 
-        this.addOutput('', info);
-    }
+    this.addOutput('', info);
+  }
 
-    nerdfetch() {
-        const nerdfetch = `<span class="cyan">                   -\`                </span>    <span class="cyan">craig</span>@<span class="cyan">orlando</span>
+  nerdfetch() {
+    const nerdfetch = `<span class="cyan">                   -\`                </span>    <span class="cyan">craig</span>@<span class="cyan">orlando</span>
 <span class="cyan">                  .o+\`               </span>    ─────────────────────────
 <span class="cyan">                 \`ooo/               </span>    <span class="cyan">OS:</span> Arch Linux / Fedora
 <span class="cyan">                \`+oooo:              </span>    <span class="cyan">Editor:</span> Neovim
@@ -710,11 +710,11 @@ platforms with 50-unit minimums.
 <span class="cyan"> \`++:.                           \`-/+</span>
 <span class="cyan"> .\`                                 \`/</span>`;
 
-        this.addOutput('', nerdfetch);
-    }
+    this.addOutput('', nerdfetch);
+  }
 
-    vim() {
-        const vimJoke = `<span class="green">Starting nvim...</span>
+  vim() {
+    const vimJoke = `<span class="green">Starting nvim...</span>
 
 <span class="warning">Just kidding! This is a web terminal.</span>
 
@@ -728,60 +728,60 @@ platforms with 50-unit minimums.
 
 <span class="cyan">Tip:</span> Real Neovim users know that :q is the hardest command to learn 😄`;
 
-        this.addOutput('', vimJoke);
-    }
+    this.addOutput('', vimJoke);
+  }
 
-    sudo(args) {
-        const command = args.join(' ');
+  sudo(args) {
+    const command = args.join(' ');
 
-        if (command.includes('rm -rf')) {
-            this.addOutput('', `<span class="error">Nice try! But I'm not letting you delete anything 😄</span>`);
-        } else {
-            this.addOutput('', `<span class="warning">[sudo] password for craig:</span>
+    if (command.includes('rm -rf')) {
+      this.addOutput('', `<span class="error">Nice try! But I'm not letting you delete anything 😄</span>`);
+    } else {
+      this.addOutput('', `<span class="warning">[sudo] password for craig:</span>
 <span class="error">Sorry, try again.</span>
 <span class="warning">[sudo] password for craig:</span>
 <span class="error">Sorry, try again.</span>
 <span class="warning">[sudo] password for craig:</span>
 <span class="error">sudo: 3 incorrect password attempts</span>`);
-        }
     }
+  }
 
-    exit() {
-        this.addOutput('', `<span class="info">Thanks for visiting! 👋</span>
+  exit() {
+    this.addOutput('', `<span class="info">Thanks for visiting! 👋</span>
 
 <span class="success">To actually leave, just close the browser tab.</span>
 <span class="cyan">Or stick around and explore more with 'help'!</span>`);
-    }
+  }
 
-    tree() {
-        const lines = ['<span class="value">.</span>'];
-        const walk = (directory, prefix) => {
-            const entries = this.directories[directory];
-            entries.forEach((entry, index) => {
-                const last = index === entries.length - 1;
-                const isDirectory = entry.endsWith('/');
-                lines.push(`${prefix}${last ? '└── ' : '├── '}<span class="${isDirectory ? 'info' : 'value'}">${entry}</span>`);
-                if (isDirectory) {
-                    const child = `${directory === '~' ? '' : directory + '/'}${entry.slice(0, -1)}`;
-                    walk(child, prefix + (last ? '    ' : '│   '));
-                }
-            });
-        };
-        walk(this.currentDirectory, '');
-        this.addOutput('', lines.join('\n'));
-    }
-
-    curl(args) {
-        if (args.length === 0) {
-            this.addOutput('', '<span class="error">curl: no URL specified</span>');
-            return;
+  tree() {
+    const lines = ['<span class="value">.</span>'];
+    const walk = (directory, prefix) => {
+      const entries = this.directories[directory];
+      entries.forEach((entry, index) => {
+        const last = index === entries.length - 1;
+        const isDirectory = entry.endsWith('/');
+        lines.push(`${prefix}${last ? '└── ' : '├── '}<span class="${isDirectory ? 'info' : 'value'}">${entry}</span>`);
+        if (isDirectory) {
+          const child = `${directory === '~' ? '' : directory + '/'}${entry.slice(0, -1)}`;
+          walk(child, prefix + (last ? '    ' : '│   '));
         }
+      });
+    };
+    walk(this.currentDirectory, '');
+    this.addOutput('', lines.join('\n'));
+  }
 
-        const endpoint = args[0];
+  curl(args) {
+    if (args.length === 0) {
+      this.addOutput('', '<span class="error">curl: no URL specified</span>');
+      return;
+    }
 
-        const endpoints = {
-            'contact': this.contactContent(),
-            'github': `<span class="success">HTTP/1.1 200 OK</span>
+    const endpoint = args[0];
+
+    const endpoints = {
+      'contact': this.contactContent(),
+      'github': `<span class="success">HTTP/1.1 200 OK</span>
 <span class="cyan">Content-Type:</span> application/json
 
 {
@@ -794,7 +794,7 @@ platforms with 50-unit minimums.
   "followers": 22,
   "html_url": "<a href="https://github.com/craigderington" target="_blank">https://github.com/craigderington</a>"
 }`,
-            'wttr.in': `<span class="cyan">Weather for Orlando, FL:</span>
+      'wttr.in': `<span class="cyan">Weather for Orlando, FL:</span>
 
       \\   /     <span class="yellow">Sunny</span>
        .-.      <span class="warning">🌡️  82°F</span>
@@ -803,35 +803,35 @@ platforms with 50-unit minimums.
       /   \\
 
 <span class="green">Perfect weather for coding!</span>`,
-        };
+    };
 
-        if (Object.hasOwn(endpoints, endpoint)) {
-            this.addOutput('', endpoints[endpoint]);
-        } else {
-            this.addOutput('', `<span class="error">curl: (6) Could not resolve host: ${this.escapeHtml(endpoint)}</span>
+    if (Object.hasOwn(endpoints, endpoint)) {
+      this.addOutput('', endpoints[endpoint]);
+    } else {
+      this.addOutput('', `<span class="error">curl: (6) Could not resolve host: ${this.escapeHtml(endpoint)}</span>
 <span class="info">Try: contact, github, wttr.in</span>`);
-        }
     }
+  }
 
-    git(args) {
-        if (args.length === 0) {
-            this.addOutput('', `<span class="info">usage: git [--version] [--help] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]
+  git(args) {
+    if (args.length === 0) {
+      this.addOutput('', `<span class="info">usage: git [--version] [--help] [-C &lt;path&gt;] [-c &lt;name&gt;=&lt;value&gt;]
            [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
            [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
            [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
            &lt;command&gt; [&lt;args&gt;]</span>`);
-            return;
-        }
+      return;
+    }
 
-        const subcommand = args[0];
+    const subcommand = args[0];
 
-        if (subcommand === 'status') {
-            this.addOutput('', `<span class="green">On branch master</span>
+    if (subcommand === 'status') {
+      this.addOutput('', `<span class="green">On branch master</span>
 <span class="green">Your branch is up to date with 'origin/master'.</span>
 
 nothing to commit, working tree clean`);
-        } else if (subcommand === 'log') {
-            this.addOutput('', `<span class="yellow">commit a1b2c3d</span> (HEAD -> master, origin/master)
+    } else if (subcommand === 'log') {
+      this.addOutput('', `<span class="yellow">commit a1b2c3d</span> (HEAD -> master, origin/master)
 Author: Craig Derington &lt;craig@craigderington.dev&gt;
 Date:   ${new Date().toDateString()}
 
@@ -841,74 +841,74 @@ Date:   ${new Date().toDateString()}
     - Implemented Tokyo Night color scheme
     - Added comprehensive CV content
     - Interactive file system navigation`);
-        } else {
-            this.addOutput('', `<span class="error">git: '${this.escapeHtml(subcommand)}' is not a git command. See 'git --help'.</span>`);
-        }
+    } else {
+      this.addOutput('', `<span class="error">git: '${this.escapeHtml(subcommand)}' is not a git command. See 'git --help'.</span>`);
+    }
+  }
+
+  echo(args) {
+    const text = args.join(' ');
+    this.addOutput('', `<span class="value">${this.escapeHtml(text)}</span>`);
+  }
+
+  history() {
+    if (this.commandHistory.length === 0) {
+      this.addOutput('', '<span class="info">No commands in history yet.</span>');
+      return;
     }
 
-    echo(args) {
-        const text = args.join(' ');
-        this.addOutput('', `<span class="value">${this.escapeHtml(text)}</span>`);
+    const historyList = this.commandHistory
+      .map((cmd, index) => `<span class="comment">${index + 1}</span>  ${this.escapeHtml(cmd)}`)
+      .join('\n');
+
+    this.addOutput('', historyList);
+  }
+
+  clearScreen() {
+    this.output.innerHTML = '';
+  }
+
+  updatePrompt() {
+    const promptSymbol = this.currentDirectory === '~'
+      ? 'guest@craig:~$'
+      : `guest@craig:~/${this.currentDirectory}$`;
+    this.prompt.textContent = promptSymbol;
+  }
+
+  autoComplete() {
+    const value = this.input.value;
+    const parts = value.split(/\s+/);
+
+    // Simple autocomplete for file names
+    if (parts.length > 1) {
+      const partial = parts[parts.length - 1];
+      const slash = partial.lastIndexOf('/');
+      const prefix = partial.slice(0, slash + 1);
+      const name = partial.slice(slash + 1);
+      const directory = prefix ? this.resolvePath(prefix) : this.currentDirectory;
+      const files = Object.hasOwn(this.directories, directory) ? this.directories[directory] : [];
+      const matches = files.filter(f => f.startsWith(name)
+        && (parts[0].toLowerCase() !== 'cd' || f.endsWith('/')));
+
+      if (matches.length === 1) {
+        parts[parts.length - 1] = prefix + matches[0];
+        this.input.value = parts.join(' ');
+      }
     }
+  }
 
-    history() {
-        if (this.commandHistory.length === 0) {
-            this.addOutput('', '<span class="info">No commands in history yet.</span>');
-            return;
-        }
+  scrollToBottom() {
+    this.output.parentElement.scrollTop = this.output.parentElement.scrollHeight;
+  }
 
-        const historyList = this.commandHistory
-            .map((cmd, index) => `<span class="comment">${index + 1}</span>  ${this.escapeHtml(cmd)}`)
-            .join('\n');
-
-        this.addOutput('', historyList);
-    }
-
-    clearScreen() {
-        this.output.innerHTML = '';
-    }
-
-    updatePrompt() {
-        const promptSymbol = this.currentDirectory === '~'
-            ? 'guest@craig:~$'
-            : `guest@craig:~/${this.currentDirectory}$`;
-        this.prompt.textContent = promptSymbol;
-    }
-
-    autoComplete() {
-        const value = this.input.value;
-        const parts = value.split(/\s+/);
-
-        // Simple autocomplete for file names
-        if (parts.length > 1) {
-            const partial = parts[parts.length - 1];
-            const slash = partial.lastIndexOf('/');
-            const prefix = partial.slice(0, slash + 1);
-            const name = partial.slice(slash + 1);
-            const directory = prefix ? this.resolvePath(prefix) : this.currentDirectory;
-            const files = Object.hasOwn(this.directories, directory) ? this.directories[directory] : [];
-            const matches = files.filter(f => f.startsWith(name)
-                && (parts[0].toLowerCase() !== 'cd' || f.endsWith('/')));
-
-            if (matches.length === 1) {
-                parts[parts.length - 1] = prefix + matches[0];
-                this.input.value = parts.join(' ');
-            }
-        }
-    }
-
-    scrollToBottom() {
-        this.output.parentElement.scrollTop = this.output.parentElement.scrollHeight;
-    }
-
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
 }
 
 // Initialize terminal when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new Terminal();
+  new Terminal();
 });
